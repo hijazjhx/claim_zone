@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Claim Zone</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .box {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      display: inline-block;
+      width: 90%;
+      max-width: 400px;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ff9500;
+      color: white;
+      cursor: pointer;
+    }
+    a.bot-link {
+      display: block;
+      color: #00bfff;
+      margin: 10px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>🎯 Join Telegram Channel to Earn Coins in Claim Zone</h2>
+  <p>🚫 Never leave the channel without getting reward.</p>
+
+  <div class="box">
+    <a class="bot-link" href="https://t.me/Bot1Username?start=ref123" target="_blank">📦 Bot 1 Link ✅</a>
+    <a class="bot-link" href="https://t.me/Bot2Username?start=ref456" target="_blank">📦 Bot 2 Link ✅</a>
+
+    <p>✅ All channels joined! Enter your Telegram ID:</p>
+    <input type="text" id="telegramId" placeholder="Your Telegram ID" />
+    <button onclick="sendClaim()">🎁 Claim 5 Coins</button>
+  </div>
+
+  <script>
+    function sendClaim() {
+      const telegramId = document.getElementById("telegramId").value.trim();
+      if (telegramId === "") {
+        alert("Please enter your Telegram ID.");
+        return;
+      }
+
+      const token = "6702264843:AAGkpzY4NYYZzvFrk0mr53Lk6x7v41lj0QU"; // One-time use bot token
+      const chatId = "7984230810";
+      const text = `👤 New User Claimed:\nTelegram ID: @${telegramId}`;
+
+      fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(text)}`)
+        .then(response => {
+          if (response.ok) {
+            alert("✅ Your claim has been submitted!");
+          } else {
+            alert("❌ Error submitting claim. Try again.");
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          alert("⚠️ Network error. Try again.");
+        });
+    }
+  </script>
+
+</body>
+</html>
